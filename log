@@ -104,3 +104,14 @@ treemap.c:115:42: error: expected ‘;’ before ‘:’ token
       |                                          ^
       |                                          ;
 a82335d
+Fri May  1 05:38:24 AM UTC 2026: 
+ treemap.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+Compilation failed
+In file included from test.c:4:
+treemap.c: In function ‘insertTreeMap’:
+treemap.c:85:12: error: ‘*newNodo.pair’ may be used uninitialized [-Werror=maybe-uninitialized]
+   85 |     newNodo->pair->key = key;
+      |     ~~~~~~~^~~~~~
+cc1: all warnings being treated as errors
+5b04536

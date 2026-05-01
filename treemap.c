@@ -112,7 +112,7 @@ void insertTreeMap(TreeMap * tree, void* key, void * value) {
         if (tree->lower_than(key, nodoAux->pair->key) == 1) {
             if (nodoAux->left == NULL) {
                 nodoAux->left = newNodo;
-                newNodo->parent = nodoAux:
+                newNodo->parent = nodoAux;
                 return;
             }
             nodoAux = nodoAux->left;
