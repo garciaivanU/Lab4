@@ -57,3 +57,13 @@ treemap.c:64:37: error: ‘pair’ undeclared (first use in this function); did 
       |                                     Pair
 treemap.c:64:37: note: each undeclared identifier is reported only once for each function it appears in
 e9070c7
+Fri May  1 04:16:56 AM UTC 2026: 
+ treemap.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+Compilation failed
+In file included from test.c:4:
+treemap.c: In function ‘searchTreeMap’:
+treemap.c:64:27: error: assignment to ‘TreeNode *’ from incompatible pointer type ‘Pair *’ [-Wincompatible-pointer-types]
+   64 |             tree->current = NodoAux->pair;
+      |                           ^
+734bdf9
