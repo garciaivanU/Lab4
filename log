@@ -8,3 +8,18 @@ Fri May  1 03:47:51 AM UTC 2026:
  tests:  4|7
 total_score: 5/60
 dd1b36d
+Fri May  1 04:04:19 AM UTC 2026: 
+ treemap.c | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
+Compilation failed
+In file included from test.c:4:
+treemap.c: In function ‘searchTreeMap’:
+treemap.c:63:40: error: ‘TreeNode’ has no member named ‘key’
+   63 |         if (is_equal(tree, key, NodoAux->key) == 0) return NodoAux-pair; // Si las llaves son iguales lo encontramos
+      |                                        ^~
+treemap.c:63:68: error: ‘pair’ undeclared (first use in this function); did you mean ‘Pair’?
+   63 |         if (is_equal(tree, key, NodoAux->key) == 0) return NodoAux-pair; // Si las llaves son iguales lo encontramos
+      |                                                                    ^~~~
+      |                                                                    Pair
+treemap.c:63:68: note: each undeclared identifier is reported only once for each function it appears in
+3ee41d5
