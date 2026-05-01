@@ -202,8 +202,12 @@ void removeNode(TreeMap * tree, TreeNode* node) {
     }
 
     // CASO 3: HAY 2 HIJOS
-    
-    
+    if (node->right != NULL && node->left != NULL) {
+        TreeNode* nodoAux = minimum(node->right);
+        node->pair = nodoAux->pair;
+        removeNode(tree, nodoAux); // EL mínimo tiene un hijo max y entra al remove de los dos primero casos
+        return;
+    }
 }
 
 void eraseTreeMap(TreeMap * tree, void* key){
