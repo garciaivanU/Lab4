@@ -163,7 +163,7 @@ void removeNode(TreeMap * tree, TreeNode* node) {
     // CASO 1: NO HAY HIJOS
     if (node->left == NULL && node->right == NULL) {
         // Caso 1.1: El nodo es la raíz y no tiene hijos
-        if (tree->root == node) tree->root == NULL;
+        if (tree->root == node) tree->root = NULL;
             
         // Caso 1.2: El nodo tiene un parent pero no hijos
         else {
