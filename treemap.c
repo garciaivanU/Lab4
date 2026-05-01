@@ -225,7 +225,7 @@ void removeNode(TreeMap * tree, TreeNode* node) {
     if (hijo_izquierda == 1 && hijo_derecha == 1) {
         TreeNode* nodoAux = minimum(node->right); // Se busca el reemplazo
         
-        nodoAux->parent->left = NULL; // Se desenlaza al reemplazo de su padre
+        nodoAux->parent->left = nodoAux->right; // Se desenlaza al reemplazo de su padre
         nodoAux->parent = node->parent; // Se enlaza el padre del que se busca eliminar al nodo de reemplazo
         
         if (node->right != nodoAux) { // Se enlaza el hijo derecho (solo si no es el reemplazo) al reemplazo
