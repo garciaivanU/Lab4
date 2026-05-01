@@ -45,3 +45,15 @@ Fri May  1 04:15:53 AM UTC 2026:
  tests:  5|7
 total_score: 5/60
 a5705af
+Fri May  1 04:16:48 AM UTC 2026: 
+ treemap.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+Compilation failed
+In file included from test.c:4:
+treemap.c: In function ‘searchTreeMap’:
+treemap.c:64:37: error: ‘pair’ undeclared (first use in this function); did you mean ‘Pair’?
+   64 |             tree->current = NodoAux-pair;
+      |                                     ^~~~
+      |                                     Pair
+treemap.c:64:37: note: each undeclared identifier is reported only once for each function it appears in
+e9070c7
