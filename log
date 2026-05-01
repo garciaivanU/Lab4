@@ -93,3 +93,14 @@ Fri May  1 04:18:11 AM UTC 2026:
  tests:  11|6
 total_score: 15/60
 4cb3345
+Fri May  1 05:38:11 AM UTC 2026: 
+ treemap.c | 52 ++++++++++++++++++++++++++++++++++++++++++++++++++--
+ 1 file changed, 50 insertions(+), 2 deletions(-)
+Compilation failed
+In file included from test.c:4:
+treemap.c: In function ‘insertTreeMap’:
+treemap.c:115:42: error: expected ‘;’ before ‘:’ token
+  115 |                 newNodo->parent = nodoAux:
+      |                                          ^
+      |                                          ;
+a82335d

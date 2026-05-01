@@ -60,9 +60,9 @@ Pair * searchTreeMap(TreeMap * tree, void* key) {
     if (NodoAux == NULL) return NULL; // Árbol Vacío
 
     while (NodoAux != NULL) {
-        if (is_equal(tree, key, NodoAux->pair->key) == 1) {
+        if (is_equal(tree, key, NodoAux->pair->key) == 1) { // Si las llaves son iguales lo encontramos
             tree->current = NodoAux;
-            return NodoAux->pair; // Si las llaves son iguales lo encontramos
+            return NodoAux->pair; 
         }
         else {
             // Se compara con "lower_than" y si es 1, la llave que buscamos es menor a la del nodo auxiliar y nos vamos a la izquierda o viceversa.
@@ -79,7 +79,55 @@ Pair * searchTreeMap(TreeMap * tree, void* key) {
 // Luego crear el nuevo nodo y enlazarlo. Si la clave del dato ya existe retorne sin hacer nada (recuerde que el mapa no permite claves repetidas).
 
 void insertTreeMap(TreeMap * tree, void* key, void * value) {
+    // Creación del nuevo nodo e inicializamos datos
+    TreeNode* newNodo = (TreeNode *)malloc(sizeof(TreeNode));
+    if (newNodo == NULL) exit(EXIT_FAILURE);
+    newNodo->pair->key = key;
+    newNodo->pair->value = value;
+    newNodo->left = NULL;
+    newNodo->right = NULL;
+    newNodo->parent = NULL; // *actualizar después
 
+    // Creamos nodo auxiliar para recorrer el árbol
+    TreeNode* nodoAux = tree->root;
+
+    // Si el arbol está vacío el nuevo nodo será la raíz
+    if (nodoAux == NULL) { 
+        tree->root = newNodo;
+        tree->current = newNodo;
+        return;
+    }
+
+    // Si el árbol no está vacío se debe recorrer el árbol
+    while (1) {
+        // SI YA EXISTE SE RETORNA
+        if (is_equal(tree, key, nodoAux->pair->key) == 1) { 
+            free(newNodo);
+            return;
+        }
+
+        // SE VALIDA SI LA LLAVE ACTUAL ES MENOR (IZQUIERDA) O MAYOR (DERECHA)
+
+        // Caso 1: Key menor
+        if (tree->lower_than(key, nodoAux->pair->key) == 1) {
+            if (nodoAux->left == NULL) {
+                nodoAux->left = newNodo;
+                newNodo->parent = nodoAux:
+                return;
+            }
+            nodoAux = nodoAux->left;
+        }
+
+        // Caso 2: Key mayor
+        else {
+            if (nodoAux->right == NULL) {
+                nodoAux->right = newNodo;
+                newNodo->parent = nodoAux;
+                return;
+            }
+            nodoAux = nodoAux->right;
+        }
+    }
 }
 
 // 4. Implemente la función TreeNode * minimum(TreeNode * x). 
