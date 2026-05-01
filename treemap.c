@@ -61,7 +61,7 @@ Pair * searchTreeMap(TreeMap * tree, void* key) {
 
     while (NodoAux != NULL) {
         if (is_equal(tree, key, NodoAux->pair->key) == 1) {
-            tree->current = *NodoAux->pair;
+            tree->current = NodoAux;
             return NodoAux->pair; // Si las llaves son iguales lo encontramos
         }
         else {
