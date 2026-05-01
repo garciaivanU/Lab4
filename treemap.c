@@ -177,12 +177,12 @@ void removeNode(TreeMap * tree, TreeNode* node) {
 
     // Variable para anotar si está a la izquierda (0) o derecha (1) del parent
     unsigned short lado_parent;
-    if (node->parent->left == node) lado_parent = 0; // Verificar luego si funciona así o si no usar key
-    else lado_parent = 1;
+    if (node->parent->left == node) lado_parent = 1; 
+    else lado_parent = 0;
     
     // CASO 1: Nodo no tiene hijos
     if (hijo_izquierda == 0 && hijo_derecha == 0) {
-        if (lado_parent == 0) node->parent->left = NULL; // Verificar luego si funciona así o si no usar key
+        if (lado_parent == 0) node->parent->left = NULL;
         else node->parent->right = NULL;
         free(node);
         return;
