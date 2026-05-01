@@ -160,92 +160,50 @@ TreeNode * minimum(TreeNode * x){
 void removeNode(TreeMap * tree, TreeNode* node) {
     if (tree->root == NULL) return;
 
-    // Variables para guardar como flag si el nodo tiene hijos de alguno de los dos lados
-    unsigned short hijo_derecha, hijo_izquierda;
-    if (node->left == NULL) hijo_izquierda = 0;
-    else hijo_izquierda = 1;
-    if (node->right == NULL) hijo_derecha = 0;
-    else hijo_derecha = 1;
-
-    // Variable para anotar si está a la izquierda (0) o derecha (1) del parent
-    unsigned short lado_parent;
-    if (node->parent->left == node) lado_parent = 0; 
-    else lado_parent = 1;
-    
-    // CASO 1: Nodo no tiene hijos
-    if (hijo_izquierda == 0 && hijo_derecha == 0) {
-        if (lado_parent == 0) node->parent->left = NULL;
-        else node->parent->right = NULL;
-        
-        if (tree->root == node) tree->root = NULL; // Si el nodo es la raíz y además no tiene hijos
-
-        tree->current = node->parent; // Queda NULL si es la raíz ya que se inicializó como NULL
-        free(node);
-        return;
-    }
-    
-    // CASO 2: Nodo tiene un hijo
-    // EJ: Si tiene el hijo en la izquierda, hacemos que el padre reemplacé el puntero del nodo, por el del único hijo que tiene y el hijo actualicé el parent
-    if (hijo_izquierda == 1 && hijo_derecha == 0) {
-        if (lado_parent == 0) {
-            node->parent->left = node->left;
-            node->left->parent = node->parent;
-        }
+    // CASO 1: NO HAY HIJOS
+    if (node->left == NULL && node->right == NULL) {
+        // Caso 1.1: El nodo es la raíz y no tiene hijos
+        if (tree->root == node) tree->root == NULL;
+            
+        // Caso 1.2: El nodo tiene un parent pero no hijos
         else {
-            node->parent->right = node->left;
-            node->left->parent = node->parent;
+            if (node->parent->left == node) node->parent->left = NULL;
+            else node->parent->right = NULL;
         }
 
-        if (tree->root == node) tree->root = node->left;
-
-        tree->current = node->left;
+        tree->current = node->parent; // Si el nodo es la raíz tiene NULL por defecto
         free(node);
         return;
     }
-    // Hijo por la derecha únicamente
-    else {
-        if (lado_parent == 0) {
-            node->parent->left = node->right;
-            node->right->parent = node->parent;
-        }
+
+    // CASO 2: HAY 1 HIJO
+    if ((node->left != NULL && node->right == NULL) || (node->left == NULL && node->right != NULL)) { 
+        
+        TreeNode* hijo;
+        if (node->left != NULL) hijo = node->left;
+        else hijo = node->right;
+        
+        // Caso 2.1: El nodo es la raíz y tiene 1 hijo
+        if (tree->root == node) {
+            hijo->parent = NULL;
+            tree->root = hijo;
+        } 
+
+        // Caso 2.2: El nodo tiene un parent y tiene 1 hijo
         else {
-            node->parent->right = node->right;
-            node->right = node->parent;
+            hijo->parent = node->parent;
+            if (node->parent->left == node) node->parent->left = hijo;
+            else node->parent->right = hijo;
         }
         
-        if (tree->root == node) tree->root = node->right;
-        tree->current = node->right;
+        tree->current = hijo;
         free(node);
         return;
     }
 
-    // CASO 3: Nodo tiene dos hijos, vamos a la derecha y buscamos el valor más pequeño para reemplazar el nodo
-    if (hijo_izquierda == 1 && hijo_derecha == 1) {
-        TreeNode* nodoAux = minimum(node->right); // Se busca el reemplazo
-        
-        nodoAux->parent->left = nodoAux->right; // Se desenlaza al reemplazo de su padre
-        nodoAux->parent = node->parent; // Se enlaza el padre del que se busca eliminar al nodo de reemplazo
-        
-        if (node->right != nodoAux) { // Se enlaza el hijo derecho (solo si no es el reemplazo) al reemplazo
-            node->right->parent = nodoAux; 
-            nodoAux->right = node->right;
-        }
-        
-        node->left->parent = nodoAux; // se enlaza el hijo izquierdo al reemplazo
-        nodoAux->left = node->left;
-        
-        if (lado_parent == 0) node->parent->left = nodoAux; // Se enlaza el nodoAux al padre del eliminado
-        else node->parent->right = nodoAux;
-
-        if (tree->root == node) tree->root = nodoAux;
-        
-        tree->current = nodoAux;
-        free(node);
-        return;
-    }
-
-    // free(node); Pude haber quitade el free y el return de todas las condiciones, pero tendría que siempre evaluar todos los casos y mejor detengo la función de una
-    // return;
+    // CASO 3: HAY 2 HIJOS
+    
+    
 }
 
 void eraseTreeMap(TreeMap * tree, void* key){
