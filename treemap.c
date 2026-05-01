@@ -192,14 +192,14 @@ void removeNode(TreeMap * tree, TreeNode* node) {
     // EJ: Si tiene el hijo en la izquierda, hacemos que el padre reemplacé el puntero del nodo, por el del único hijo que tiene y el hijo actualicé el parent
     if (hijo_izquierda == 1 && hijo_derecha == 0) {
         if (lado_parent == 0) {
-            node->parent->left = node->left;
+            node->parent->right = node->left;
             node->left->parent = node->parent;
             free(node);
             return;
         }
         else {
-            node->parent->right = node->left;
-            node->left = node->parent;
+            node->parent->left = node->left;
+            node->left->parent = node->parent;
             free(node);
             return;
         }
