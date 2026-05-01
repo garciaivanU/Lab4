@@ -164,7 +164,7 @@ void removeNode(TreeMap * tree, TreeNode* node) {
     if (tree->root == node) {
         tree->root = NULL;
         tree->current = NULL;
-        free(nodo);
+        free(node);
         return;
     }
 
@@ -184,7 +184,7 @@ void removeNode(TreeMap * tree, TreeNode* node) {
     if (hijo_izquierda == 0 && hijo_derecha == 0) {
         if (lado_parent == 0) node->parent->left = NULL; // Verificar luego si funciona así o si no usar key
         else node->parent->right = NULL;
-        free(nodo);
+        free(node);
         return;
     }
     
@@ -194,13 +194,13 @@ void removeNode(TreeMap * tree, TreeNode* node) {
         if (lado_parent == 0) {
             node->parent->left = node->left;
             node->left->parent = node->parent;
-            free(nodo);
+            free(node);
             return;
         }
         else {
             node->parent->right = node->left;
             node->left = node->parent;
-            free(nodo);
+            free(node);
             return;
         }
     }
@@ -209,13 +209,13 @@ void removeNode(TreeMap * tree, TreeNode* node) {
         if (lado_parent == 0) {
             node->parent->right = node->right;
             node->right->parent = node->parent;
-            free(nodo);
+            free(node);
             return;
         }
         else {
             node->parent->left = node->right;
             node->right = node->parent;
-            free(nodo);
+            free(node);
             return;
         }
     }
