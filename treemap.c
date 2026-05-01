@@ -177,8 +177,8 @@ void removeNode(TreeMap * tree, TreeNode* node) {
 
     // Variable para anotar si está a la izquierda (0) o derecha (1) del parent
     unsigned short lado_parent;
-    if (node->parent->left == node) lado_parent = 1; 
-    else lado_parent = 0;
+    if (node->parent->left == node) lado_parent = 0; 
+    else lado_parent = 1;
     
     // CASO 1: Nodo no tiene hijos
     if (hijo_izquierda == 0 && hijo_derecha == 0) {
@@ -192,13 +192,13 @@ void removeNode(TreeMap * tree, TreeNode* node) {
     // EJ: Si tiene el hijo en la izquierda, hacemos que el padre reemplacé el puntero del nodo, por el del único hijo que tiene y el hijo actualicé el parent
     if (hijo_izquierda == 1 && hijo_derecha == 0) {
         if (lado_parent == 0) {
-            node->parent->right = node->left;
+            node->parent->left = node->left;
             node->left->parent = node->parent;
             free(node);
             return;
         }
         else {
-            node->parent->left = node->left;
+            node->parent->right = node->left;
             node->left->parent = node->parent;
             free(node);
             return;
@@ -207,13 +207,13 @@ void removeNode(TreeMap * tree, TreeNode* node) {
     // Hijo por la derecha únicamente
     else {
         if (lado_parent == 0) {
-            node->parent->right = node->right;
+            node->parent->left = node->right;
             node->right->parent = node->parent;
             free(node);
             return;
         }
         else {
-            node->parent->left = node->right;
+            node->parent->right = node->right;
             node->right = node->parent;
             free(node);
             return;
