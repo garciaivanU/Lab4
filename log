@@ -162,3 +162,19 @@ Fri May  1 05:49:38 AM UTC 2026:
  tests:  15|4
 total_score: 25/60
 74ee6a7
+Fri May  1 07:12:22 AM UTC 2026: 
+ treemap.c | 86 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 86 insertions(+)
+Compilation failed
+In file included from test.c:4:
+treemap.c: In function ‘removeNode’:
+treemap.c:164:23: error: ‘nodo’ undeclared (first use in this function); did you mean ‘node’?
+  164 |     if (tree->root == nodo) {
+      |                       ^~~~
+      |                       node
+treemap.c:164:23: note: each undeclared identifier is reported only once for each function it appears in
+treemap.c:185:13: error: suggest parentheses around assignment used as truth value [-Werror=parentheses]
+  185 |         if (lado_parent = 0) node->parent->left = NULL; // Verificar luego si funciona así o si no usar key
+      |             ^~~~~~~~~~~
+cc1: all warnings being treated as errors
+fdc3ff3
