@@ -160,14 +160,6 @@ TreeNode * minimum(TreeNode * x){
 void removeNode(TreeMap * tree, TreeNode* node) {
     if (tree->root == NULL) return;
 
-    // CASO 0: El nodo es la raíz
-    if (tree->root == node) {
-        tree->root = NULL;
-        tree->current = NULL;
-        free(node);
-        return;
-    }
-
     // Variables para guardar como flag si el nodo tiene hijos de alguno de los dos lados
     unsigned short hijo_derecha, hijo_izquierda;
     if (node->left == NULL) hijo_izquierda = 0;
@@ -184,6 +176,10 @@ void removeNode(TreeMap * tree, TreeNode* node) {
     if (hijo_izquierda == 0 && hijo_derecha == 0) {
         if (lado_parent == 0) node->parent->left = NULL;
         else node->parent->right = NULL;
+        
+        if (tree->root == node) tree->root = NULL; // Si el nodo es la raíz y además no tiene hijos
+
+        tree->current = node->parent; // Queda NULL si es la raíz ya que se inicializó como NULL
         free(node);
         return;
     }
@@ -194,34 +190,36 @@ void removeNode(TreeMap * tree, TreeNode* node) {
         if (lado_parent == 0) {
             node->parent->left = node->left;
             node->left->parent = node->parent;
-            free(node);
-            return;
         }
         else {
             node->parent->right = node->left;
             node->left->parent = node->parent;
-            free(node);
-            return;
         }
+
+        if (tree->root == node) tree->root = node->left;
+
+        tree->current = node->left;
+        free(node);
+        return;
     }
     // Hijo por la derecha únicamente
     else {
         if (lado_parent == 0) {
             node->parent->left = node->right;
             node->right->parent = node->parent;
-            free(node);
-            return;
         }
         else {
             node->parent->right = node->right;
             node->right = node->parent;
-            free(node);
-            return;
         }
+        
+        if (tree->root == node) tree->root = node->right;
+        tree->current = node->right;
+        free(node);
+        return;
     }
 
     // CASO 3: Nodo tiene dos hijos, vamos a la derecha y buscamos el valor más pequeño para reemplazar el nodo
-
     if (hijo_izquierda == 1 && hijo_derecha == 1) {
         TreeNode* nodoAux = minimum(node->right); // Se busca el reemplazo
         
@@ -236,9 +234,12 @@ void removeNode(TreeMap * tree, TreeNode* node) {
         node->left->parent = nodoAux; // se enlaza el hijo izquierdo al reemplazo
         nodoAux->left = node->left;
         
-        if (lado_parent == 0) node->parent->left = nodoAux;
+        if (lado_parent == 0) node->parent->left = nodoAux; // Se enlaza el nodoAux al padre del eliminado
         else node->parent->right = nodoAux;
+
+        if (tree->root == node) tree->root = nodoAux;
         
+        tree->current = nodoAux;
         free(node);
         return;
     }
