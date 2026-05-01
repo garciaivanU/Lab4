@@ -82,6 +82,8 @@ void insertTreeMap(TreeMap * tree, void* key, void * value) {
     // Creación del nuevo nodo e inicializamos datos
     TreeNode* newNodo = (TreeNode *)malloc(sizeof(TreeNode));
     if (newNodo == NULL) exit(EXIT_FAILURE);
+    newNodo->pair = (Pair *)malloc(sizeof(Pair));
+    if (newNodo->pair == NULL) exit(EXIT_FAILURE); 
     newNodo->pair->key = key;
     newNodo->pair->value = value;
     newNodo->left = NULL;
