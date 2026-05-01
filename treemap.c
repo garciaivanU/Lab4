@@ -60,7 +60,7 @@ Pair * searchTreeMap(TreeMap * tree, void* key) {
     if (NodoAux == NULL) return NULL; // Árbol Vacío
 
     while (NodoAux != NULL) {
-        if (is_equal(tree, key, NodoAux->pair->key) == 0) return NodoAux->pair; // Si las llaves son iguales lo encontramos
+        if (is_equal(tree, key, NodoAux->pair->key) == 1) return NodoAux->pair; // Si las llaves son iguales lo encontramos
         else {
             // Se compara con "lower_than" y si es 1, la llave que buscamos es menor a la del nodo auxiliar y nos vamos a la izquierda o viceversa.
             if (tree->lower_than(key, NodoAux->pair->key) == 1) NodoAux = NodoAux->left;
