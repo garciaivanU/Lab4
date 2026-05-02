@@ -225,7 +225,7 @@ void eraseTreeMap(TreeMap * tree, void* key){
 // Recuerde actualizar este puntero.
 
 Pair * firstTreeMap(TreeMap * tree) {
-    if (tree->root == NULL) return;
+    if (tree->root == NULL) return NULL;
     
     TreeNode* nodoAux = tree->root;
     while (nodoAux->left != NULL) {
