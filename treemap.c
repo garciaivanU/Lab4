@@ -267,15 +267,22 @@ Pair * nextTreeMap(TreeMap * tree) {
 
 Pair * upperBound(TreeMap * tree, void* key) {
     if (tree->root == NULL) return NULL;
-    if (tree->root->pair->key == key) return tree->root->pair;
-
 
     TreeNode* nodoAux = tree->root;
+    TreeNode* posibleKey = NULL;
+    
     while (1) {
-        if (nodoAux->pair->key == key) return nodoAux->pair;
-        break;
+        if (is_equal(tree, key, nodoAux->pair->key) return nodoAux->pair; // Encontramos la misma llave dentro del árbol
+    
+        if (tree->lower_than(key, nodoAux->pair->key) == 1) {
+            posibleKey = nodoAux;
+            nodoAux = nodoAux->left;
+        }
+        else {
+            nodoAux = nodoAux->right;
+        }
     }
 
-    
+    if (posibleKey != NULL) return posibleKey->pair;
     return NULL;
 }
