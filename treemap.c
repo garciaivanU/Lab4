@@ -231,7 +231,7 @@ Pair * firstTreeMap(TreeMap * tree) {
     while (nodoAux->left != NULL) {
         nodoAux = nodoAux->left;
     }
-    tree->current = nodoAux
+    tree->current = nodoAux;
     return nodoAux->pair;
 }
 
