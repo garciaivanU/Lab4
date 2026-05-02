@@ -236,6 +236,27 @@ Pair * firstTreeMap(TreeMap * tree) {
 }
 
 Pair * nextTreeMap(TreeMap * tree) {
+    if (tree->root == NULL) return NULL;
+    if (tree->current == NULL) return NULL;
+
+    if (tree->current->right != NULL) {
+        TreeNode* proximoNodo = minimum(tree->current->right);
+        tree->current = proximoNodo;
+        return proximo->pair;
+    }
+
+    TreeNode* nodoHijo = tree->current;
+    TreeNode* nodoPadre = tree->current->parent;
+
+    // Mientras estemos subiendo por la derecha siempre los valores que pillemos serán menores a nosotros, hasta que encontremos un valor que estamos a su izquierda, en ese caso ese valor es más grande que nosotros y es el primer valor más pequeño del árbol que es mayor al current
+    while (nodoPadre != NULL && nodoHijo == padre->right) { 
+        nodoHijo = nodoPadre;
+        nodoPadre = nodoPadre->parent;
+    }
+
+    tree->current = nodoPadre;
+
+    if (tree->current != NULL) return tree->current->pair;
     return NULL;
 }
 
