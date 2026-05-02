@@ -272,7 +272,7 @@ Pair * upperBound(TreeMap * tree, void* key) {
     TreeNode* posibleKey = NULL;
     
     while (1) {
-        if (is_equal(tree, key, nodoAux->pair->key) return nodoAux->pair; // Encontramos la misma llave dentro del árbol
+        if (is_equal(tree, key, nodoAux->pair->key)) return nodoAux->pair; // Encontramos la misma llave dentro del árbol
     
         if (tree->lower_than(key, nodoAux->pair->key) == 1) {
             posibleKey = nodoAux;
