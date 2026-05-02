@@ -242,7 +242,7 @@ Pair * nextTreeMap(TreeMap * tree) {
     if (tree->current->right != NULL) {
         TreeNode* proximoNodo = minimum(tree->current->right);
         tree->current = proximoNodo;
-        return proximo->pair;
+        return proximoNodo->pair;
     }
 
     TreeNode* nodoHijo = tree->current;
