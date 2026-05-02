@@ -269,10 +269,11 @@ Pair * upperBound(TreeMap * tree, void* key) {
     if (tree->root == NULL) return NULL;
     if (tree->root->pair->key == key) return tree->root->pair;
 
-    void* ultimoAcercamiento = tree->root->pair->key;
+
     TreeNode* nodoAux = tree->root;
     while (1) {
         if (nodoAux->pair->key == key) return nodoAux->pair;
+        break;
     }
 
     
