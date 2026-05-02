@@ -249,7 +249,7 @@ Pair * nextTreeMap(TreeMap * tree) {
     TreeNode* nodoPadre = tree->current->parent;
 
     // Mientras estemos subiendo por la derecha siempre los valores que pillemos serán menores a nosotros, hasta que encontremos un valor que estamos a su izquierda, en ese caso ese valor es más grande que nosotros y es el primer valor más pequeño del árbol que es mayor al current
-    while (nodoPadre != NULL && nodoHijo == padre->right) { 
+    while (nodoPadre != NULL && nodoHijo == nodoPadre->right) { 
         nodoHijo = nodoPadre;
         nodoPadre = nodoPadre->parent;
     }
