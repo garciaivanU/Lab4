@@ -251,3 +251,22 @@ Fri May  1 11:36:57 PM UTC 2026:
  tests:  18|3
 total_score: 35/60
 9717091
+Sat May  2 12:09:41 AM UTC 2026: 
+ treemap.c | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
+Compilation failed
+In file included from test.c:4:
+treemap.c: In function ‘firstTreeMap’:
+treemap.c:228:29: error: ‘return’ with no value, in function returning non-void [-Wreturn-mismatch]
+  228 |     if (tree->root == NULL) return;
+      |                             ^~~~~~
+treemap.c:227:8: note: declared here
+  227 | Pair * firstTreeMap(TreeMap * tree) {
+      |        ^~~~~~~~~~~~
+treemap.c:234:28: error: expected ‘;’ before ‘return’
+  234 |     tree->current = nodoAux
+      |                            ^
+      |                            ;
+  235 |     return nodoAux->pair;
+      |     ~~~~~~                  
+1a60b2f
